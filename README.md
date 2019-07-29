@@ -1,2 +1,2 @@
 # Mechanica
-Bloated Form Application 
+.NET Core 2.1 form application
