@@ -1,0 +1,19 @@
+﻿@model int
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+<td style="width: 150px;">
+    <div class="btn-group" style="min-width: 44px;" role="group">
+        <a class="btn rounded-left" href="@Url.Action("Edit/" + Model)">
+            <i class="fas fa-keyboard"></i>
+        </a>
+        <a class="btn" style="min-width: 44px;" href="@Url.Action("Details/" + Model)">
+            <i class="fas fa-info"></i>
+        </a>
+        <a class="btn rounded-right" style="min-width: 44px;" asp-action="Delete" asp-route-id="@Model">
+            <i class="fas fa-trash"></i>
+        </a>
+    </div>
+</td>

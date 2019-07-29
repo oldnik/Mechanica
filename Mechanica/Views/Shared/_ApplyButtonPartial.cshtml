@@ -1,0 +1,15 @@
+﻿@model int
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<td style="width: 100px;">
+    <div class="btn-group" style="min-width: 44px;" role="group">
+        <a class="btn" style="min-width: 44px;" href="@Url.Action("Undo/" + Model)">
+            <i class="fas fa-undo"></i>
+        </a>
+        <a class="btn rounded-right" style="min-width: 44px;" href="@Url.Action("Check/" + Model)">
+            <i class="fas fa-check"></i>
+        </a>
+    </div>
+</td>
