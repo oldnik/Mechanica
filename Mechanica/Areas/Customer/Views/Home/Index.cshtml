@@ -7,30 +7,14 @@
 <div class="row">
     @foreach (var product in Model)
     {
-        <div class="col-4">
+        <div class="container-fluid col-4">
             <div class="card mb-4">
-                <div class="card-header text-center">
-                    <h4 class="my-0 font-weight-normal">
-                        <label style="font-size: 23px; color:steelblue;">@product.Name</label>
-                    </h4>
-                </div>
-                <div class="text-center">
-                    <img class="card-img-top" style="height:auto; width:auto; max-height:250px; margin:10px;" src="@product.Image" alt="@product.Name" />
-                </div>
-                <div class="card-body">
-                        <div class="container-fluid">
-                                <label style="font-size:20px; color:#581313"><b>@product.Price PLN</b></label>      
-                                <div class="btn-group btn-group-toggle float-right">
-                                    <a class="btn btn-secondary  rounded-left" asp-action="Details" asp-area="Admin" asp-controller="Products" asp-route-id="@product.Id">
-                                        <i class="fas fa-shopping-basket"></i>
-                                    </a>
-                                    <a class="btn btn-secondary rounded-right" asp-action="Details" asp-area="Admin" asp-controller="Products" class="btn btn-secondary" asp-route-id="@product.Id">Szczegóły</a>
-                                </div> 
-                        </div>
-                </div>
+                <partial name="_IndexCardContain" model="product" />
             </div>
         </div>
     }
 </div>
+
+
 
 

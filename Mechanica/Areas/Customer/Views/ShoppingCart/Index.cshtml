@@ -1,0 +1,53 @@
+﻿@model Mechanica.Models.ViewModel.ShoppingCartViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<form method="post">
+    @if (Model.Products.Count > 0)
+    {
+        <h2 class="text-info m-3">Twoja lista zakupów</h2>
+        <div class="container border border-secondary rounded" style="padding: 15px;">
+            <div class="row">
+                <div class="col-8" style="border-right: 1px solid #aaa9b9">
+                    <table class="table table-striped" style="width: 100%;">
+                        <tr class="table-info">
+                            <th class="text-center w-25">
+                               
+                            </th>
+                            <th class="text-center">
+                                <label asp-for="@Model.Products.FirstOrDefault().Name"></label>
+                            </th>
+                            <th class="text-center">
+                                <label asp-for="@Model.Products.FirstOrDefault().Price"></label>
+                            </th>
+                            <th class="text-center">
+                                <label asp-for="@Model.Products.FirstOrDefault().ProductTypes.Name"></label>
+                            </th>
+                            <th class="text-center"></th>
+                        </tr>
+                        @foreach (var item in Model.Products)
+                        {
+                            <tr style="padding: 50px; background-color: white;">
+                                <td>
+                                    <a asp-area="Customer" asp-controller="Home" asp-action="Details" asp-route-id="@item.Id" >
+                                        <img src="@item.Image" draggable="false" class="w-auto m-auto" style="max-height: 150px; display:block; border-radius:5px; border:1px;" />
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+                <div class="col-4">
+                    B
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <h2 class="text-info m-3 text-danger">Twoja lista zakupów jest pusta</h2>
+    }
+</form>
+

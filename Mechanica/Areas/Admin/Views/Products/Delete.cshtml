@@ -71,9 +71,9 @@
             <img src="@Model.Products.Image" style="max-height: 350px; border-radius:5px; border:1px; color:aliceblue" />
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-danger" value="Usuń" />
-            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.Products.Id">Edytuj</a>
-            <a asp-action="Index" class="btn btn-success">Powrót do Listy</a>
+            <input type="submit" class="btn btn-danger rounded-left" value="Usuń" />
+            <a asp-action="Edit" class="btn btn-secondary" style="margin-left: -5px;" asp-route-id="@Model.Products.Id">Edytuj</a>
+            <a asp-action="Index" class="btn btn-secondary rounded-right" style="margin-left: -10px;">Powrót do Listy</a>
 
         </div>
     </div>

@@ -12,7 +12,7 @@ namespace Mechanica.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Musisz podać nazwę")]
-        [DisplayName("Nazwa")]
+        [DisplayName("Typ Produktu")]
         public string Name { get; set; }
     }
 }

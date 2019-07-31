@@ -16,6 +16,8 @@ namespace Mechanica.Data
 
         public DbSet<ProductTypes> ProductTypes { get; set; }
         public DbSet<Products> Products { get; set; }
+        public DbSet<Appointments> Appointments { get; set; }
+        public DbSet<ProductsSelectedForAppointment> ProductsSelectedForAppointment { get; set; }
 
     }
 }

@@ -1,0 +1,27 @@
+﻿@model Mechanica.Models.Products
+
+@{
+    ViewData["Title"] = "_IndexCardContain";
+}
+<form method="post">
+    <div class="card-header text-center">
+        <h4 class="my-0 font-weight-normal">
+            <label style="font-size: 23px; color:steelblue;">@Model.Name</label>
+        </h4>
+    </div>
+    <div class="text-center">
+        <img draggable="false" class="card-img-top" style="height:auto; width:auto; max-height:250px; margin:10px;" src="@Model.Image" alt="@Model.Name" />
+    </div>
+    <div class="card-body">
+        <div class="container-fluid">
+            <label style="font-size:20px; color:#581313"><b>@Model.Price zł</b></label>
+            <div class="btn-group btn-group-toggle float-sm-right">
+                <button type="submit" value="Dodaj do kosza" class="btn btn-secondary  rounded-left" asp-route-id="@Model.Id">
+                    <i class="fas fa-shopping-basket"></i>
+                </button>
+                <input hidden asp-for="Id" />
+                <a class="btn btn-secondary rounded-right" asp-action="Details" asp-area="Customer" asp-controller="Home" asp-route-id="@Model.Id">Szczegóły</a>
+            </div>
+        </div>
+    </div>
+</form>

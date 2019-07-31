@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Mechanica.Models;
 using Mechanica.Data;
 using Microsoft.EntityFrameworkCore;
+using Mechanica.Extensions;
+using Microsoft.AspNetCore.Http;
 
 namespace Mechanica.Controllers
 {
@@ -27,24 +29,44 @@ namespace Mechanica.Controllers
             return View(productList);
         }
 
-        public IActionResult About()
+        [HttpPost, ActionName("Index")]
+        [ValidateAntiForgeryToken]
+        public IActionResult IndexAddItemToShoppingCart(int id)
         {
-            ViewData["Message"] = "Your application description page.";
+            List<int> listShoppingCart = HttpContext.Session.Get<List<int>>("ssShoppingCart");
+            if(listShoppingCart == null)
+            {
+                listShoppingCart = new List<int>();
+            }
 
-            return View();
+            listShoppingCart.Add(id);
+            HttpContext.Session.Set("ssShoppingCart", listShoppingCart);
+
+            return RedirectToAction("Index", "Home", new { area = "Customer" });
         }
 
-        public IActionResult Contact()
+        public async Task<IActionResult> Details(int id)
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            var product = await _db.Products.Include(m => m.ProductTypes).Where(m => m.Id == id).FirstOrDefaultAsync();
+            return View(product);
         }
 
-        public IActionResult Privacy()
+        [HttpPost, ActionName("Details")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DetailsPost(int id)
         {
-            return View();
+            List<int> listShoppingCart = HttpContext.Session.Get<List<int>>("ssShoppingCart");
+            if(listShoppingCart == null)
+            {
+                listShoppingCart = new List<int>();
+            }
+
+            listShoppingCart.Add(id);
+            HttpContext.Session.Set("ssShoppingCart", listShoppingCart);
+
+            return RedirectToAction("Index", "Home", new { area = "Customer" });
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

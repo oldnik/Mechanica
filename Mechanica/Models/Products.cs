@@ -17,8 +17,8 @@ namespace Mechanica.Models
         public string Name { get; set; }
 
         [Required]
-        [DisplayName("Cena")]
-        public double Price { get; set; }
+        [DisplayName("Cena"), DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
+        public string Price { get; set; }
 
         [Required]
         [DisplayName("Ilość")]

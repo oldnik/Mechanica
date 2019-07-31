@@ -1,0 +1,94 @@
+﻿@model Mechanica.Models.Products
+@using Mechanica.Extensions
+
+<h2 class="text-info text-center" style="margin-bottom: 2vh;">Informacje o Produkcie</h2>
+
+<form method="post">
+    <div class="p-4 border rounded row">
+        <div class="col-6">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Name" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Price"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Price" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Quantity"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Quantity" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Weight"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Weight" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Capacity"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Capacity" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ProductTypes"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ProductTypes.Name" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Available"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Available" disabled class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="col-6 text-center img-fluid">
+            <img src="@Model.Image" style="max-height: 350px; border-radius:5px; border:1px; color:aliceblue" />
+        </div>
+    </div>
+    <div class="form-group row text-center mt-3">
+        @if (Model.Quantity > 0)
+        {
+            <div class="col-2"></div>
+            <div class="btn-group col-8">
+                <a asp-action="Index" style="margin-left: -5px;" class="btn btn-secondary rounded-left">&nbsp;<i class="fas fa-undo"></i>&nbsp;</a>
+                <button type="submit" value="Dodaj do Kosza" asp-route-id="@Model.Id" class="btn btn-secondary form-control rounded-right">&ensp;<i class="fas fa-shopping-basket"></i>&ensp;</button>
+            </div>
+            <div class="col-2"></div>
+        }
+        else
+        {
+            <div class="col-2"></div>
+            <div class="btn-group col-8">
+                <a asp-action="Index" style="margin-left: -5px;" class="btn btn-secondary rounded-left">&nbsp;<i class="fas fa-undo"></i>&ensp;</a>
+            </div>
+            <div class="col-2"></div>
+        }
+    </div>
+</form>
+
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

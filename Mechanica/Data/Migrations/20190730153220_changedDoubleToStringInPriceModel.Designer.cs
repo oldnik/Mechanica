@@ -4,41 +4,22 @@ using Mechanica.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Mechanica.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190730153220_changedDoubleToStringInPriceModel")]
+    partial class changedDoubleToStringInPriceModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Mechanica.Models.Appointments", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("AppointmentDate");
-
-                    b.Property<string>("CustomerEmail");
-
-                    b.Property<string>("CustomerName");
-
-                    b.Property<string>("CustomerPhoneNumber");
-
-                    b.Property<bool>("isConfirmed");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Appointments");
-                });
 
             modelBuilder.Entity("Mechanica.Models.Products", b =>
                 {
@@ -70,25 +51,6 @@ namespace Mechanica.Data.Migrations
                     b.HasIndex("ProductTypeId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("Mechanica.Models.ProductsSelectedForAppointment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AppointmentId");
-
-                    b.Property<int>("ProductId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppointmentId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductsSelectedForAppointment");
                 });
 
             modelBuilder.Entity("Mechanica.Models.ProductTypes", b =>
@@ -275,19 +237,6 @@ namespace Mechanica.Data.Migrations
                     b.HasOne("Mechanica.Models.ProductTypes", "ProductTypes")
                         .WithMany()
                         .HasForeignKey("ProductTypeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Mechanica.Models.ProductsSelectedForAppointment", b =>
-                {
-                    b.HasOne("Mechanica.Models.Appointments", "Appointments")
-                        .WithMany()
-                        .HasForeignKey("AppointmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Mechanica.Models.Products", "Products")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
